@@ -10,9 +10,7 @@ interface ContactStore {
   
   // Actions
   initializeContacts: (contacts: Contact[]) => void;
-  
-  
-  tact: (contact: Omit<Contact, "id" | "dateAdded">) => void;
+  addContact: (contact: Omit<Contact, "_id" | "createdAt">) => void;
   updateContact: (id: string, contact: Partial<Contact>) => void;
   deleteContact: (id: string) => void;
   toggleBlocked: (id: string) => void;
@@ -42,11 +40,10 @@ export const useStore = create<ContactStore>((set, get) => ({
   },
   
   addContact: (contactData) => {
-    const { _id, ...restContactData } = contactData as any;
     const newContact: Contact = {
       _id: uuidv4(),
-      dateAdded: new Date().toISOString(),
-      ...restContactData
+      createdAt: new Date().toISOString(),
+      ...contactData
     };
     
     set((state) => ({
@@ -112,14 +109,8 @@ export const useStore = create<ContactStore>((set, get) => ({
         matchesFilter = contact.blocked;
       } else if (filterOption === "favorites") {
         matchesFilter = contact.favourite;
-      } else if (filterOption === "recent") {
-        // Consider "recent" as contacted within last 7 days
-        if (!contact.lastContacted) return false;
-        const lastContactedDate = new Date(contact.lastContacted);
-        const sevenDaysAgo = new Date();
-        sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
-        matchesFilter = lastContactedDate >= sevenDaysAgo;
       }
+      // Removed the "recent" filter option since it relied on lastContacted
       
       return matchesSearch && matchesFilter;
     });
@@ -130,12 +121,8 @@ export const useStore = create<ContactStore>((set, get) => ({
         return a.name.localeCompare(b.name);
       } else if (sortOption === "dateAdded") {
         return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
-      } else if (sortOption === "lastContacted") {
-        // Handle cases where lastContacted might be undefined
-        if (!a.lastContacted) return 1;
-        if (!b.lastContacted) return -1;
-        return new Date(b.lastContacted).getTime() - new Date(a.lastContacted).getTime();
       }
+      // Removed the "lastContacted" sort option since it's not in the schema
       return 0;
     });
   }

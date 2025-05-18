@@ -3,7 +3,6 @@ export interface Contact {
   name: string;
   email?: string;
   createdAt: string;
-  lastContacted?: string;
   notes?: string;
   tags?: string[];
   number: string;

@@ -224,9 +224,7 @@ export function ContactCard({ contact, onUpdate }: ContactCardProps) {
             
             <div className="text-xs text-muted-foreground mt-3 pt-2 border-t">
               Added {formatDate(contact.createdAt)}
-              {contact.lastContacted && (
-                <> • Last contacted {formatDate(contact.lastContacted)}</>
-              )}
+     
             </div>
           </div>
         </div>
