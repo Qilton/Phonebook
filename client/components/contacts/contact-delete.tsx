@@ -41,7 +41,7 @@ export function ContactDelete({
       
       // First delete from the API
       const response = await axios.delete(
-        `http://localhost:8000/api/phonebook/delete/${contactId}`,
+        `https://phonebook-4k9e.vercel.app/api/phonebook/delete/${contactId}`,
       );
 
       if (response.data.success) {

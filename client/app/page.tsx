@@ -20,7 +20,7 @@ useEffect(() => {
       setError(null);
       
       const response = await axios.get(
-        "http://localhost:8000/api/phonebook/getAll",
+        "https://phonebook-4k9e.vercel.app/api/phonebook/getAll",
       );
 
       if (response.data.success) {

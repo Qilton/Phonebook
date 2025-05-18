@@ -22,7 +22,7 @@ export function ContactsContainer() {
       try {
         setIsLoading(true);
         setError(null);
-        const response = await axios.get("http://localhost:8000/api/phonebook/getAll");
+        const response = await axios.get("https://phonebook-4k9e.vercel.app/api/phonebook/getAll");
         
         if (response.data.success) {
           initializeContacts(response.data.data);

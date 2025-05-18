@@ -47,7 +47,7 @@ export function ContactCard({ contact, onUpdate }: ContactCardProps) {
       
       // Update backend first
       const response = await axios.put(
-        `http://localhost:8000/api/phonebook/update/${contact._id}`,
+        `https://phonebook-4k9e.vercel.app/api/phonebook/update/${contact._id}`,
         { favourite: newFavoriteStatus },
       );
 
@@ -76,7 +76,7 @@ export function ContactCard({ contact, onUpdate }: ContactCardProps) {
       
       // Update backend first
       const response = await axios.put(
-        `http://localhost:8000/api/phonebook/update/${contact._id}`,
+        `https://phonebook-4k9e.vercel.app/api/phonebook/update/${contact._id}`,
         { blocked: newBlockedStatus },
       );
 
