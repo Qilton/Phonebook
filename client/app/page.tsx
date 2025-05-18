@@ -4,7 +4,6 @@ import { useEffect,useState } from "react";
 import { PageHeader } from "@/components/layout/page-header";
 import { ContactsContainer } from "@/components/contacts/contacts-container";
 import { useStore } from "@/lib/store";
-import { demoContacts } from "@/lib/demo-data";
 import { toast } from "sonner"
 
 import axios from "axios";
